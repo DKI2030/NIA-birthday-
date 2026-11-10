@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Little Surprise For Chhaya 💜</title>
+
+  <!-- Fonts (needs internet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Floating particles that stay behind every page -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Used for the heart explosion + flash -->
+  <canvas id="burst-canvas" aria-hidden="true"></canvas>
+  <div id="flash" aria-hidden="true"></div>
+
+  <!-- ============ PAGE 1: PURPLE HEART ============ -->
+  <section id="page1" class="page active">
+    <p class="intro-top">A Little Surprise For You...</p>
+
+    <button id="heart-btn" class="heart-btn" aria-label="Touch the heart">
+      <div class="heart-glow"></div>
+      <svg class="heart-svg" viewBox="0 0 200 180" aria-hidden="true">
+        <defs>
+          <!-- main body: light top-left to deep bottom-right gives the 3D roundness -->
+          <radialGradient id="hBody" cx="35%" cy="28%" r="85%">
+            <stop offset="0%"  stop-color="#e2b8ff" />
+            <stop offset="30%" stop-color="#a84cf0" />
+            <stop offset="70%" stop-color="#5d17a8" />
+            <stop offset="100%" stop-color="#25064d" />
+          </radialGradient>
+          <!-- soft shine on the upper lobes -->
+          <radialGradient id="hShine" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"  stop-color="#fff" stop-opacity=".85" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+          <filter id="hBlur"><feGaussianBlur stdDeviation="3" /></filter>
+        </defs>
+        <path id="heart-path" fill="url(#hBody)"
+          d="M100 172 C 40 128 6 96 6 56 C 6 26 28 8 54 8 C 76 8 92 20 100 38 C 108 20 124 8 146 8 C 172 8 194 26 194 56 C 194 96 160 128 100 172 Z" />
+        <ellipse cx="58" cy="40" rx="24" ry="13" transform="rotate(-32 58 40)" fill="url(#hShine)" filter="url(#hBlur)" />
+        <ellipse cx="150" cy="34" rx="9" ry="5" transform="rotate(30 150 34)" fill="url(#hShine)" opacity=".5" filter="url(#hBlur)" />
+      </svg>
+    </button>
+
+    <p class="intro-bottom">Touch My Heart 💜</p>
+  </section>
+
+  <!-- ============ PAGE 2: VIDEO ============ -->
+  <section id="page2" class="page">
+    <h2 class="page-title">A Special Birthday Message For You 💜</h2>
+
+    <div class="video-frame">
+      <!-- Your own video: assets/videos/birthday-video.mp4 -->
+      <video id="birthday-video" controls playsinline preload="metadata">
+        <source src="assets/videos/birthday-video.mp4" type="video/mp4" />
+        Your browser does not support video playback.
+      </video>
+    </div>
+
+    <button id="continue-btn" class="glow-btn">Continue To Your Surprise ❤️</button>
+  </section>
+
+  <!-- ============ PAGE 3: POETRY ============ -->
+  <section id="page3" class="page page-scroll">
+    <div class="moon" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
+
+    <div class="poem-wrap">
+      <h2 class="poem-title">Ek Chhoti Si Kavita... Sirf Tumhare Liye ❤️</h2>
+
+      <!-- poetry.js fills this in from your poem -->
+      <div id="poem" class="poem"></div>
+
+      <div id="poem-end" class="poem-end">
+        <p class="end-big">Happy Birthday, Chhaya! 🎂❤️</p>
+        <p class="end-small">Stay Happy. Keep Smiling. Keep Shining.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts (order matters: poetry data first) -->
+  <script src="js/poetry.js"></script>
+  <script src="js/heart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+/* ==========================================================
+   animations.css – keyframes and animation classes
+   ========================================================== */
+
+/* Idle float before the heart is touched */
+.heart-btn:not(.beating):not(.expanding) .heart-svg  { animation: idleFloat 3.2s ease-in-out infinite; }
+.heart-btn:not(.beating):not(.expanding) .heart-glow { animation: idleGlow 3.2s ease-in-out infinite; }
+@keyframes idleFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-8px) scale(1.02); }
+}
+@keyframes idleGlow { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+
+/* Steps 1-2: heartbeat + stronger glow */
+.heart-btn.beating .heart-svg  { animation: heartbeat .75s ease-in-out infinite; }
+.heart-btn.beating .heart-glow { animation: glowBeat .75s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15%      { transform: scale(1.12); }
+  30%      { transform: scale(1); }
+  45%      { transform: scale(1.18); }
+  60%      { transform: scale(1.02); }
+}
+@keyframes glowBeat {
+  0%, 100% { opacity: 1; transform: scale(1.05); }
+  15%, 45% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Step 3: smooth expansion just before it shatters */
+.heart-btn.expanding .heart-svg  { animation: expand 1s cubic-bezier(.5, 0, .9, .4) forwards; }
+.heart-btn.expanding .heart-glow { animation: expandGlow 1s ease-in forwards; }
+@keyframes expand {
+  from { transform: scale(1);    filter: drop-shadow(0 0 20px #b05cff) brightness(1); }
+  to   { transform: scale(1.65); filter: drop-shadow(0 0 70px #e2b8ff) brightness(1.6); }
+}
+@keyframes expandGlow {
+  from { transform: scale(1.3); opacity: 1; }
+  to   { transform: scale(2.6); opacity: 1; }
+}
+
+.heart-btn.gone { visibility: hidden; }
+
+.page.leaving .intro-top,
+.page.leaving .intro-bottom { opacity: 0; transition: opacity .8s ease; }
+
+/* Cinematic flash on explosion */
+#flash.go { animation: flash 1.1s ease-out forwards; }
+@keyframes flash { 0% { opacity: 0; } 18% { opacity: .95; } 100% { opacity: 0; } }
+
+/* Page 2 entrance */
+#page2.active .page-title  { animation: riseIn 1.2s .3s both cubic-bezier(.2, .7, .2, 1); }
+#page2.active .video-frame { animation: frameIn 1.5s .6s both cubic-bezier(.2, .7, .2, 1); }
+#page2.active .glow-btn    { animation: riseIn 1.2s 1.4s both cubic-bezier(.2, .7, .2, 1); }
+@keyframes riseIn  { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes frameIn { from { opacity: 0; transform: scale(.88); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+
+/* Page 3 */
+.poem-line.show, .poem-end.show { animation: lineFade 1.6s ease forwards; }
+@keyframes lineFade {
+  from { opacity: 0; transform: translateY(12px); filter: blur(3px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.star { animation: twinkle 3s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+.moon { animation: moonGlow 6s ease-in-out infinite; }
+@keyframes moonGlow {
+  0%, 100% { box-shadow: 0 0 40px 12px rgba(197, 139, 255, .4), 0 0 120px 40px rgba(138, 43, 226, .25); }
+  50%      { box-shadow: 0 0 55px 18px rgba(197, 139, 255, .6), 0 0 150px 55px rgba(138, 43, 226, .38); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

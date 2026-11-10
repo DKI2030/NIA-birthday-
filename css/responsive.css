@@ -1,0 +1,24 @@
+/* ==========================================================
+   responsive.css – phones, landscape, large screens
+   ========================================================== */
+
+@media (max-width: 600px) {
+  .page { gap: 1.2rem; padding: 1rem; }
+  .video-frame { border-radius: 16px; padding: 4px; }
+  .video-frame video { border-radius: 12px; max-height: 40vh; }
+  .moon { right: 6vw; top: 3vh; }
+  .poem-wrap { padding-top: 22vh; }
+}
+
+/* Short landscape phones */
+@media (max-height: 520px) and (orientation: landscape) {
+  .page:not(.page-scroll) { gap: .7rem; }
+  .heart-btn { width: min(30vw, 190px); }
+  .page-title { font-size: 1.3rem; }
+  .video-frame video { max-height: 55vh; }
+  .glow-btn { padding: .6rem 1.6rem; }
+}
+
+@media (min-width: 1200px) {
+  .video-frame { width: min(70vw, 960px); }
+}
